@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>WebGIS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      var map = L.map("map").setView([-7.9, 110.45], 10); // lat, long, zoom
+
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Juan Latif Alifia &copy; &mdash; 23611003 Satistika Universitas Islam Indonesia",
+      });
+
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a>',
+      });
+
+      Esri_WorldImagery.addTo(map);
+
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri World Imagery": Esri_WorldImagery,
+      };
+
+      var overlayMaps = {};
+      var layerControl = L.control.layers(baseMaps, overlayMaps, { collapsed: false });
+      layerControl.addTo(map);
+
+      // custom marker
+      var markerWisata = L.icon({
+        iconUrl: "https://tse3.mm.bing.net/th?id=OIP.kLkh6cxCxSr2GJPKQOwJsAHaHa&pid=Api&P=0&h=180",
+        iconSize: [20, 20],
+      });
+
+      var Pariwisata1 = L.marker([-6.201419379130702, 106.83596849841713], { icon: markerWisata });
+      Pariwisata1.bindPopup("Taman Tangkuban Perahu");
+      Pariwisata1.addTo(map);
+      Pariwisata1.openPopup();
+      Pariwisata1.bindTooltip("Tangkuban Perahu No.1 5, RT.5/RW.1, Guntur, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12980");
+
+      var Pariwisata2 = L.marker([-6.225310797671676, 106.79991961025017], { icon: markerWisata });
+      Pariwisata2.bindPopup("Taman Mataram Jakarta");
+      Pariwisata2.addTo(map);
+      Pariwisata2.openPopup();
+      Pariwisata2.bindTooltip("Jl. Sisingamangaraja No.2, Selong, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12110");
+
+      var Pariwisata3 = L.marker([-6.30209726256489, 106.81708574747253], { icon: markerWisata });
+      Pariwisata3.bindPopup("Pusat Primata Schmutzer Jakarta");
+      Pariwisata3.addTo(map);
+      Pariwisata3.openPopup();
+      Pariwisata3.bindTooltip("MRQC+237, RT.10/RW.7, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata4 = L.marker([-6.3160882428607845, 106.82326555687258], { icon: markerWisata });
+      Pariwisata4.bindPopup("Taman Spathodea");
+      Pariwisata4.addTo(map);
+      Pariwisata4.openPopup();
+      Pariwisata4.bindTooltip("Jagakarsa near taman spatodhea, Daerah Khusus Ibukota Jakarta 12520");
+
+      var Pariwisata5 = L.marker([-6.320865564202779, 106.81090593807248], { icon: markerWisata });
+      Pariwisata5.bindPopup("Taman Tabebuya");
+      Pariwisata5.addTo(map);
+      Pariwisata5.openPopup();
+      Pariwisata5.bindTooltip("Jalan Muhammad Kafi No.1, RT.1/RW.2, Ciganjur, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12630");
+
+      var Pariwisata6 = L.marker([-6.285717098931803, 106.81708574747253], { icon: markerWisata });
+      Pariwisata6.bindPopup("Agro Eduwisata Ragunan");
+      Pariwisata6.addTo(map);
+      Pariwisata6.openPopup();
+      Pariwisata6.bindTooltip("Jl. Poncol No.10, RT.1/RW.1, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata7 = L.marker([-6.311652119278263, 106.83974504860605], { icon: markerWisata });
+      Pariwisata7.bindPopup("Taman Jagakarsa");
+      Pariwisata7.addTo(map);
+      Pariwisata7.openPopup();
+      Pariwisata7.bindTooltip("Jl. H.E. Mahjur No.13, RT.3/RW.2, Lenteng Agung, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12530");
+
+      var Pariwisata8 = L.marker([-6.235549644634748, 106.79408312359456], { icon: markerWisata });
+      Pariwisata8.bindPopup("Taman Langsat");
+      Pariwisata8.addTo(map);
+      Pariwisata8.openPopup();
+      Pariwisata8.bindTooltip("QQ4V+95Q, Jl. Barito, RT.1/RW.1, Kramat Pela, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12130");
+
+      var Pariwisata9 = L.marker([-6.318476909045076, 106.83631182116159], { icon: markerWisata });
+      Pariwisata9.bindPopup("Kampung Wisata Kedung Gede Ciliwung");
+      Pariwisata9.addTo(map);
+      Pariwisata9.openPopup();
+      Pariwisata9.bindTooltip("1, RT.1/RW.4, Lenteng Agung, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12610");
+
+      var Pariwisata10 = L.marker([-6.2294063604258625, 106.85279131289505], { icon: markerWisata });
+      Pariwisata10.bindPopup("Tebet Eco Park");
+      Pariwisata10.addTo(map);
+      Pariwisata10.openPopup();
+      Pariwisata10.bindTooltip("Jl. Tebet Barat Raya, RT.1/RW.10, Tebet Bar., Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12820");
+
+      var Pariwisata11 = L.marker([-6.226724431078951, 106.76855270986296], { icon: markerWisata });
+      Pariwisata11.bindPopup("Kampung Main Cipulir");
+      Pariwisata11.addTo(map);
+      Pariwisata11.openPopup();
+      Pariwisata11.bindTooltip("Jl. Masjid Jami' Nurul Yaqin Gang H. Ali Sairi No.1A, Grogol Sel., Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12220");
+
+      var Pariwisata12 = L.marker([-6.294638187656171, 106.83859054973023], { icon: markerWisata });
+      Pariwisata12.bindPopup("Taman Tanjung");
+      Pariwisata12.addTo(map);
+      Pariwisata12.openPopup();
+      Pariwisata12.bindTooltip("Jl. TB Simatupang No.111, RT.1/RW.8, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12520");
+
+      var Pariwisata13 = L.marker([-6.297368203920692, 106.83275406307463], { icon: markerWisata });
+      Pariwisata13.bindPopup("Taman Sepat Jakarta");
+      Pariwisata13.addTo(map);
+      Pariwisata13.openPopup();
+      Pariwisata13.bindTooltip("Jl. Sepat I No.68 1, RT.1/RW.6, Kebagusan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12520");
+
+      var Pariwisata14 = L.marker([-6.260853050842839, 106.78228561964089], { icon: markerWisata });
+      Pariwisata14.bindPopup("Pondok Indah Water Park");
+      Pariwisata14.addTo(map);
+      Pariwisata14.openPopup();
+      Pariwisata14.bindTooltip("PQJM+WQ2, Pondok Indah Mall, Jl. Metro Pondok Indah, RT.1/RW.16, Pd. Pinang, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12310");
+
+      var Pariwisata15 = L.marker([-6.297368203920692, 106.82005112153008], { icon: markerWisata });
+      Pariwisata15.bindPopup("Taman Margasatwa Ragunan");
+      Pariwisata15.addTo(map);
+      Pariwisata15.openPopup();
+      Pariwisata15.bindTooltip("Jl. Harsono Rm Dalam No.1, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata16 = L.marker([-6.258122843172129, 106.82211105799676], { icon: markerWisata });
+      Pariwisata16.bindPopup("Museum di Tengah Kebun");
+      Pariwisata16.addTo(map);
+      Pariwisata16.openPopup();
+      Pariwisata16.bindTooltip("Jl. Kemang Timur No.66 7, RT.7/RW.3, Bangka, Kec. Mampang Prpt., Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12730");
+
+      var Pariwisata17 = L.marker([-6.3317321300702005, 106.82520096269685], { icon: markerWisata });
+      Pariwisata17.bindPopup("Setu babakan");
+      Pariwisata17.addTo(map);
+      Pariwisata17.openPopup();
+      Pariwisata17.bindTooltip("Jl. Situ Babakan No.1, RT.1/RW.7, Srengseng Sawah, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12630");
+
+      var Pariwisata18 = L.marker([-6.301330021485977, 106.82218526415619], { icon: markerWisata });
+      Pariwisata18.bindPopup("Taman Anggrek Ragunan");
+      Pariwisata18.addTo(map);
+      Pariwisata18.openPopup();
+      Pariwisata18.bindTooltip("Jl. Harsono, RT.1/RW.7, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata19 = L.marker([-6.301758232587064, 106.78944339428584], { icon: markerWisata });
+      Pariwisata19.bindPopup("Museum Layang-layang Indonesia");
+      Pariwisata19.addTo(map);
+      Pariwisata19.openPopup();
+      Pariwisata19.bindTooltip("Jl. H. Kamang No.38 8, RT.8/RW.10, Pd. Labu, Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12450");
+
+      var Pariwisata20 = L.marker([-6.291052849096046, 106.81830793746101], { icon: markerWisata });
+      Pariwisata20.bindPopup("Ragunan kebun binatang");
+      Pariwisata20.addTo(map);
+      Pariwisata20.openPopup();
+      Pariwisata20.bindTooltip("MRXC+78V, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta");
+
+      var Pariwisata21 = L.marker([-6.276064941823117, 106.80538351514377], { icon: markerWisata });
+      Pariwisata1.bindPopup("Museum Harry Darsono");
+      Pariwisata1.addTo(map);
+      Pariwisata1.openPopup();
+      Pariwisata1.bindTooltip("Jl. Cilandak Tengah Raya No.71, RT.2/RW.13, Cilandak Bar., Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12430");
+
+      var Pariwisata22 = L.marker([-6.294050378717513, 106.76144047926513], { icon: markerWisata });
+      Pariwisata22.bindPopup("Situ Gintung");
+      Pariwisata22.addTo(map);
+      Pariwisata22.openPopup();
+      Pariwisata22.bindTooltip("MQW7+X67, Cireundeu, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15419");
+
+      var Pariwisata23 = L.marker([-6.298332533884663, 106.82433933454239], { icon: markerWisata });
+      Pariwisata23.bindPopup("Pesona Aquarium Kebagusan");
+      Pariwisata23.addTo(map);
+      Pariwisata23.openPopup();
+      Pariwisata23.bindTooltip("Kav. 37B, Jl. Kebagusan Raya No.9 9, RT.9/RW.7, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata24 = L.marker([-6.222961464383004, 106.81830793746101], { icon: markerWisata });
+      Pariwisata24.bindPopup("Museum Satriamandala");
+      Pariwisata24.addTo(map);
+      Pariwisata24.openPopup();
+      Pariwisata24.bindTooltip("Jl. Gatot Subroto No.14, RT.6/RW.1, Kuningan Bar., Kec. Mampang Prpt., Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12710");
+
+      var Pariwisata25 = L.marker([-6.215252447899908, 106.8109840981479], { icon: markerWisata });
+      Pariwisata25.bindPopup("KidZania Jakarta");
+      Pariwisata25.addTo(map);
+      Pariwisata25.openPopup();
+      Pariwisata25.bindTooltip("Pacific Place Mall, Jl. Jenderal Sudirman No.Kav. 52-53, RT.5/RW.3, Senayan, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12190");
+
+      var Pariwisata26 = L.marker([-6.19828079110882, 106.8288755972131], { icon: markerWisata });
+      Pariwisata26.bindPopup("Taman Bakrie");
+      Pariwisata26.addTo(map);
+      Pariwisata26.openPopup();
+      Pariwisata26.bindTooltip("Jl. HR Rasuna Said No.62, RT.5/RW.5, Kuningan, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12920");
+
+      var Pariwisata27 = L.marker([-6.324024722280721, 106.82692421900583], { icon: markerWisata });
+      Pariwisata27.bindPopup("Buahbatu Pariwisata Jakarta");
+      Pariwisata27.addTo(map);
+      Pariwisata27.openPopup();
+      Pariwisata27.bindTooltip("Jl. Moch. Kahfi II No.32 6, RT.11/RW.8, Srengseng Sawah, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12630");
+
+      var Pariwisata28 = L.marker([-6.293193943447409, 106.81658468115204], { icon: markerWisata });
+      Pariwisata28.bindPopup("Agro Edukasi Wisata Ragunan");
+      Pariwisata28.addTo(map);
+      Pariwisata28.openPopup();
+      Pariwisata28.bindTooltip("Jl. Poncol No.RT.10 10, RT.1/RW.4, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata29 = L.marker([-6.28633287169582, 106.82269578781303], { icon: markerWisata });
+      Pariwisata29.bindPopup("Kandang Macan Tutul");
+      Pariwisata29.addTo(map);
+      Pariwisata29.openPopup();
+      Pariwisata29.bindTooltip("Jl. Harsono RM No.1, RT.2/RW.4, Ragunan, Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12550");
+
+      var Pariwisata30 = L.marker([-6.224220149699183, 106.85840135323556], { icon: markerWisata });
+      Pariwisata30.bindPopup("Eco Edu Wisata Ciliwung");
+      Pariwisata30.addTo(map);
+      Pariwisata30.openPopup();
+      Pariwisata30.bindTooltip("QV46+2Q5, Jl. Inspeksi Ciliwung, RT.1/RW.1, Cikoko, Kec. Pancoran, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta");
+    </script>
+  </body>
+</html>
